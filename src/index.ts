@@ -1,15 +1,4 @@
-import { makeDBConnection } from "./db";
-import { Book } from "./entities";
+import { main, init } from './app';
 
-async function main() {
-    const db = await makeDBConnection()
+init().then(main);
 
-    const book = new Book();
-    book.author = "Trevor Noah";
-    book.title = "Born a crime";
-    book.subtitle = "";
-
-    await db.manager.save(book);
-}
-
-main().then(() => console.log("Done")).catch(err => console.error("Main exited with error: ", err));
